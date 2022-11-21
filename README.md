@@ -6,8 +6,5 @@
 
 ## Instructions
 
-The starter project has some HTML and CSS styling to display a static version of the Landing Page project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
-
-To get started, open `js/app.js` and start building out the app's functionality
-
-For specific, detailed instructions, look at the project instructions in the Udacity Classroom.
+Created a function that builds the navbar and adds another element to it when a section is added, added the ability to go to a specific section smoothly when u click on it on the navbar,
+and added the active class to the sections and the items on the navbar using getBoundingClientRect().
