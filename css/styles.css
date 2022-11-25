@@ -10,6 +10,8 @@
 
 
 /* ---- Base Rules ---- */
+
+/* added this for smooth scrolling */
 html{
     scroll-behavior: smooth;
 }
@@ -93,6 +95,7 @@ section {
     transition: ease 0.3s all;
 }
 
+/* added these styles for making the link active */
 .navbar__menu .menu__link.active {
     background: #333;
     color: #fff;

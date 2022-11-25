@@ -6,7 +6,10 @@ const navMenu = document.querySelector("#navbar__list");
 const fragment = document.createDocumentFragment();
 
 
-// building the navbar
+/*building the navbar: I created a new li element to add it to the navabr for each section,
+inside it i created a new a element and added the section-id for it
+so when you click on the link it scrolls for the specified section,
+added the class 'menu-link' for styling the links and inside the a element i added the section name using section.dataset.nav*/
 function buildNavListItems() {
     for (const section of sections) {
         const navListItem = document.createElement("li");
@@ -20,7 +23,9 @@ function buildNavListItems() {
 window.addEventListener("load", buildNavListItems);
 
 
-// Add class 'active' to section and the navbar links when near top of viewport
+/* Add class 'active' to section and the navbar links when near top of viewport: Used getBoundingClientRect() as specified in the project rubric,
+to make the section and the link active at the same time using the your-active-class styling for sections and the active styling for links,
+I set the bounding to between 500 and -50 because that was the best while testing it.*/
 function setActive() {
     const links = document.querySelectorAll("a.menu__link");
     for (const section of sections) {
