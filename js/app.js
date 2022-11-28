@@ -46,10 +46,11 @@ function setActive() {
 }
 window.addEventListener("scroll", setActive);
 
-//used scrollIntoView to scroll to a section when a link is clicked.
+//used scrollIntoView to scroll to a section when a link is clicked, added a timeout to change the hash location and allow the smooth scroll to fuction correctly.
 navMenu.addEventListener("click", (event) => {
     event.preventDefault();
     if (event.target.dataset.sectionId) {
         document.getElementById(event.target.dataset.sectionId).scrollIntoView({ behavior: "smooth" });
+        setTimeout(() => { location.hash = event.target.dataset.sectionId }, 1000);
     }
 });
