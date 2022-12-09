@@ -10,14 +10,14 @@ inside it i created a new a element and added the section-id for it
 so when you click on the link it scrolls for the specified section,
 added the class 'menu-link' for styling the links and inside the a element i added the section name using section.dataset.nav*/
 function buildNavListItems() {
-    for (const section of sections) {
-        const navListItem = document.createElement("li");
-        navListItem.innerHTML = `<a href='#${section.id}' data-section-id='${section.id}' class='menu__link'>${section.dataset.nav}</a>`;
+  for (const section of sections) {
+    const navListItem = document.createElement("li");
+    navListItem.innerHTML = `<a href='#${section.id}' data-section-id='${section.id}' class='menu__link'>${section.dataset.nav}</a>`;
 
-        fragment.appendChild(navListItem);
-    }
+    fragment.appendChild(navListItem);
+  }
 
-    navMenu.appendChild(fragment);
+  navMenu.appendChild(fragment);
 }
 window.addEventListener("load", buildNavListItems);
 
@@ -25,32 +25,50 @@ window.addEventListener("load", buildNavListItems);
 to make the section and the link active at the same time using the your-active-class styling for sections and the active styling for links,
 I set the bounding to between 500 and -50 because that was the best while testing it.*/
 function setActive() {
-    const links = document.querySelectorAll("a");
-    for (const section of sections) {
-        if (
-            section.getBoundingClientRect().top <= 500 &&
-            section.getBoundingClientRect().top >= -50
-        ) {
-            section.classList.add("your-active-class");
-            links.forEach((link) => {
-                if (link.textContent === section.dataset.nav) {
-                    link.classList.add("active");
-                } else {
-                    link.classList.remove("active");
-                }
-            });
+  const links = document.querySelectorAll("a");
+  for (const section of sections) {
+    if (
+      section.getBoundingClientRect().top <= 500 &&
+      section.getBoundingClientRect().top >= -50
+    ) {
+      section.classList.add("your-active-class");
+      links.forEach((link) => {
+        if (link.textContent === section.dataset.nav) {
+          link.classList.add("active");
         } else {
-            section.classList.remove("your-active-class");
+          link.classList.remove("active");
         }
+      });
+    } else {
+      section.classList.remove("your-active-class");
     }
+  }
 }
 window.addEventListener("scroll", setActive);
 
 //used scrollIntoView to scroll to a section when a link is clicked, added a timeout to change the hash location and allow the smooth scroll to fuction correctly.
 navMenu.addEventListener("click", (event) => {
-    event.preventDefault();
-    if (event.target.dataset.sectionId) {
-        document.getElementById(event.target.dataset.sectionId).scrollIntoView({ behavior: "smooth" });
-        setTimeout(() => { location.hash = event.target.dataset.sectionId }, 1000);
-    }
+  event.preventDefault();
+  if (event.target.dataset.sectionId) {
+    document
+      .getElementById(event.target.dataset.sectionId)
+      .scrollIntoView({ behavior: "smooth" });
+    setTimeout(() => {
+      location.hash = event.target.dataset.sectionId;
+    }, 1000);
+  }
 });
+
+// created a button to scroll to the top of the page
+const topButton = document.createElement("button");
+topButton.textContent = "Top";
+topButton.classList.add("scroll-to-top");
+topButton.addEventListener("click", () => {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+});
+document.addEventListener("scroll", () => {
+  window.scrollY > 100
+    ? (topButton.style.display = "block")
+    : (topButton.style.display = "none");
+});
+document.body.appendChild(topButton);
